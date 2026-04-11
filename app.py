@@ -4,7 +4,7 @@ import os
 from groq import Groq
 
 
-os.environ["GROQ_API_KEY"] = ""
+os.environ["GROQ_API_KEY"] = os.getenv("GROQ_API_KEY", "")
 
 model = joblib.load("foodexp.pkl")
 
@@ -55,7 +55,15 @@ def roe():
     )
     return(render_template("roe.html",r=r.choices[0].message.content))
 
+@app.route("/apple", methods=["get", "post"])
+def apple():
+    return render_template("apple.html")
 @app.route("/generalQuestion",methods=["get","post"])
+
+@app.route("/equity", methods=["get", "post"])
+def equity():
+    return render_template("equity.html")
+
 def generalQuestion():
     return(render_template("generalQuestion.html"))
 
